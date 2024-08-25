@@ -11,6 +11,10 @@ const organizationSchema = mongoose.Schema({
 	type: Array,
 	default: [],
     }, 
+    tasks:{
+        type: Array,
+        default:[],
+    }
 }, {
     timestamps: true
 })

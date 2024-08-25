@@ -31,3 +31,7 @@ export const eventSchema = Joi.object({
   ticketsAvailable: Joi.number().required(),
   date: Joi.date().required()
 })
+
+export const inviteSchema = Joi.object({
+  email: Joi.string().email().required()
+})
