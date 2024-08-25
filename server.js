@@ -6,6 +6,7 @@ import bodyParser from "body-parser"
 import { rateLimiterUsingThirdParty } from "./utils/rateLimiter.js"
 import client from "./utils/redis.js"
 import { connect } from "./database/schema/connection.js"
+import inviteRoute from "./routes/inviteRoute.js"
 
 //import httpLogger from "./logger/httplogger.js"
 
@@ -28,6 +29,7 @@ client.connect()
 app.set('view engine', 'ejs');
 
 app.use("/", authRoute)
+app.use("/", inviteRoute)
 
 
 

@@ -31,7 +31,19 @@ const taskSchema = mongoose.Schema({
         type: Date,
         required: true, 
         min: new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"))
+    },
+    endDate: {
+        type: Date, 
+        required: true, 
+    },
+    comments: {
+        type: String,
+    },
+    attachments: {
+        type: Array,
+        default: [],
     }
+
 
 }, {
     timestamps: true
