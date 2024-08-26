@@ -33,5 +33,6 @@ export const eventSchema = Joi.object({
 })
 
 export const inviteSchema = Joi.object({
-  email: Joi.string().email().required()
+  email: Joi.string().email().required(),
+  organization: Joi.string().required()
 })

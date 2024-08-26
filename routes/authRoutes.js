@@ -3,18 +3,21 @@ import { Router } from "express";
 import {generateMiddleware} from "../middleware/generatedMiddleware.js"
 import * as authController from "../controllers/authController.js"
 import { loginSchema, passwordSchema, registerSchema, resetSchema } from "../validations/authValidations.js";
-
-
+import { userMiddleware } from "../middleware/userMiddleware.js";
 
 
 const authRoute = Router()
 
 
-authRoute.get('/', async(req, res)=> {
-   res.render('register', {
+authRoute.get('/', userMiddleware,  async(req, res)=> {
+   res.render('dashboard', {
     title: 'Taskly',
   });
 });
+
+
+
+
 authRoute.get('/register', async(req, res)=> {
    res.render('register')
 });

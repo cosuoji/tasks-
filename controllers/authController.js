@@ -11,7 +11,7 @@ export const login = async (req, res, next)=>{
        
 
         //console.log(req.path, token)
-        res.render("dashboard")
+        res.redirect("/dashboard")
     }
     catch(err){
         res.status(err.status || 500);
@@ -22,10 +22,9 @@ export const login = async (req, res, next)=>{
 
 export const register = async (req, res)=>{
     try {
-    const {name,password,email} = req.body
-    const path = req.url
-    await authService.register(name,email,password, path)
-    res.render("dashboard")
+    const {name,password,email, organization} = req.body
+    await authService.register(name,email,password, organization)
+    res.redirect("/dashboard")
     }
     catch(err){
         res.status(err.status || 500);

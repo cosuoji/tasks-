@@ -6,6 +6,7 @@ import blacklist from "../database/schema/blacklistSchema.js";
 import Token from "../database/schema/tokenSchema.js"
 import crypto from "crypto"
 import {sendEmail} from "../utils/sendEmail.js"
+import Organizations from "../database/schema/organizationSchema.js";
 
 export const login = async (email, password) =>{
     //check if email exists
@@ -19,6 +20,8 @@ export const login = async (email, password) =>{
     if(!bcrypt.compareSync(password, user.password)){
         throw new ErrorWithStatus("username or password incorrect", 400)
     }
+
+
 
     //Generate the JWT Token
     const JWT_SECRET = process.env.JWT_SECRET 
@@ -40,7 +43,7 @@ export const login = async (email, password) =>{
 
 }
 
-export const register = async (name, email, password,path) =>{
+export const register = async (name, email, password, organization) =>{
     //check if email exists
     const user = await User.findOne({email})
     if(user){
@@ -54,7 +57,19 @@ export const register = async (name, email, password,path) =>{
         name, email, password,
     })
 
+
+    newUser.organizations.push(organization)
     await newUser.save()
+
+
+
+
+    const newOrg = new Organizations({
+        name: organization, owner: newUser._id
+    })
+
+    newOrg.usersInOrganization.push(email)
+    await newOrg.save()
     delete newUser.password;
 
     return {

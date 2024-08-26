@@ -14,19 +14,19 @@ export const userMiddleware = async (req, res, next) =>{
 
     if(checkIfBlackListed){
         return res
-            .status(401).redirect("/")
+            .status(401).redirect("/login")
             //.json({message: "This session has expired. Please login"})
     }
 
 
     if(!authorization){
-        return res.status(401).redirect("/")
+        return res.status(401).redirect("/login")
         //.json({message: "Cannot View Events, please signup/ login"})
     }
 
       jwt.verify(authorization, JWT_SECRET, (err, decoded)=>{
         if(err){
-            return res.status(401).redirect("/")
+            return res.status(401).redirect("/dashboard")
             //.json({message: "Unauthorized"})
         }
 

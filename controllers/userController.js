@@ -1,10 +1,11 @@
-import * as inviteService from "../services/inviteService.js"
+import * as userService from "../services/userService.js"
 
 export const sendInviteRequest = async(req, res)  =>{
 try {
     const {email, organization} = req.body;
-    const result = await inviteService.sendInviteRequest(email, organization);
-    res.json(result)
+    //console.log(organization)
+    const result = await userService.sendInviteRequest(email, organization);
+    res.redirect("/dashboard")
     
 } catch (err) {
     res.status(err.status || 500);
