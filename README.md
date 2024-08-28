@@ -14,8 +14,11 @@ Requirements and Implementation Guide
 
 - Boards and Tasks every organization should be able to have boards where they track their various tasks. The task can be assigned to users within the organization, it should have priorities, labels, status, start date, due date, comments, description and ability to store imagesvideos as attachments. Tasks on boards should be filterable by status, task owners, priorities, labels.
 
-- Collaboration owners and users should be able to invite others to join their boards
+-  Collaboration owners and users should be able to invite others to join their boards
 
 - Notifications Taskly should notify users when they are assigned to a task, when the due date is 1 day, 12 hours and 1 hour past due. Notify users on a task when comments are created on the task. Add more use cases where possible.
 
 - Analytics depending on the statuses that are set, owners should get a weekly report of the amount of tasks that were completed, still pending etc. It should also give report on the average time to complete tasks
+
+
+Add tasks will be modal 

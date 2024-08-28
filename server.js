@@ -7,6 +7,7 @@ import { rateLimiterUsingThirdParty } from "./utils/rateLimiter.js"
 import client from "./utils/redis.js"
 import { connect } from "./database/schema/connection.js"
 import userRoutes from "./routes/userRoutes.js"
+import orgRoute from "./routes/orgRoutes.js"
 
 //import httpLogger from "./logger/httplogger.js"
 
@@ -30,6 +31,7 @@ app.set('view engine', 'ejs');
 
 app.use("/", authRoute)
 app.use("/dashboard", userRoutes)
+app.use("/org", orgRoute)
 
 
 

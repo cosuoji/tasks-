@@ -2,6 +2,7 @@
 import { Router } from "express";
 import {generateMiddleware} from "../middleware/generatedMiddleware.js"
 import * as authController from "../controllers/authController.js"
+import * as userController from "../controllers/userController.js"
 import { loginSchema, passwordSchema, registerSchema, resetSchema } from "../validations/authValidations.js";
 import { userMiddleware } from "../middleware/userMiddleware.js";
 
@@ -9,14 +10,7 @@ import { userMiddleware } from "../middleware/userMiddleware.js";
 const authRoute = Router()
 
 
-authRoute.get('/', userMiddleware,  async(req, res)=> {
-   res.render('dashboard', {
-    title: 'Taskly',
-  });
-});
-
-
-
+authRoute.get('/', userMiddleware, userController.userOrganizations)
 
 authRoute.get('/register', async(req, res)=> {
    res.render('register')

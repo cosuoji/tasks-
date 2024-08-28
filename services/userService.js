@@ -31,3 +31,23 @@ export const sendInviteRequest = async(email, organization) =>{
         throw new ErrorWithStatus(error.message, 500)
     }
 }
+
+export const userOrganizations = async() =>{
+  try {
+    const user = await User.findById(userId)
+    let arr = [];
+
+    for(let i = 0; i  < user.organizations.length; i++){
+       let link = await Organizations.find({name: user.organizations[i]})
+       let key = link[0].name
+       let answer = {[key]: link[0]._id.toString()}
+       arr.push(answer)
+    }
+
+    return {
+      arr
+    }
+  } catch (error) {
+     throw new ErrorWithStatus(error.message, 500)
+  }
+}
