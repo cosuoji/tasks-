@@ -5,5 +5,6 @@ const orgRoute = Router()
 
 
 orgRoute.get("/:orgid", userMiddleware, orgController.displayTasks)
+orgRoute.post("/:orgid", userMiddleware, orgController.addNewTask)
 
 export default orgRoute

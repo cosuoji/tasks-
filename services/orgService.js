@@ -12,3 +12,13 @@ export const displayTasks = async(orgid)=>{
         throw new ErrorWithStatus(error.message, 500)
     }
 }
+
+export const addNewTask = async()=>{
+    try{
+        return{
+            message: "yeah"
+        }
+    }catch(err){
+      throw new ErrorWithStatus(err.message, 500)
+    }
+}
