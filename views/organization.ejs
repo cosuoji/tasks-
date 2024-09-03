@@ -78,44 +78,108 @@
                                         </svg>
                                     </button>
                                 </div>
-                                <form class="space-y-6 px-6 lg:px-8 pb-4 sm:pb-6 xl:pb-8" action="#">
+                                <form class="space-y-6 px-6 lg:px-8 pb-4 sm:pb-6 xl:pb-8" method="POST" action="/org/<%- orgid -%>">
                                     <h3 class="text-xl font-medium text-gray-900 dark:text-white">Add Task</h3>
+                                    <!-- Name Section -->
                                     <div>
-                                        <label for="email" class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Your
-                                            email</label>
-                                        <input type="email" name="email" id="email"
+                                        <label for="name" class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Your
+                                            Task</label>
+                                        <input type="text" name="name" id="name"
                                             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                            placeholder="name@company.com" required="">
+                                            placeholder="Task Name" required="">
                                     </div>
+                                    <!-- Datalist Section -->
+                                     <div>
+                                        <label for="users" class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Assign User</label>
+                                        <input type="email"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                            list="emails" multiple required>
+                                        <datalist id="emails">
+                                            <% for (let i=0; i < users.length ; i++) { %>
+                                                <option value="<%=users[i] %>">
+                                                    <% } %>
+                                        </datalist>
+                                     </div>
+                                    <!-- Radio Section -->
                                     <div>
-                                        <label for="password"
-                                            class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Your
-                                            password</label>
-                                        <input type="password" name="password" id="password" placeholder="••••••••"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                            required="">
-                                    </div>
                                     <div class="flex justify-between">
-                                        <div class="flex items-start">
-                                            <div class="flex items-center h-5">
-                                                <input id="remember" aria-describedby="remember" type="checkbox"
-                                                    class="bg-gray-50 border border-gray-300 focus:ring-3 focus:ring-blue-300 h-4 w-4 rounded dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
-                                                    required="">
-                                            </div>
-                                            <div class="text-sm ml-3">
-                                                <label for="remember" class="font-medium text-gray-900 dark:text-gray-300">Remember
-                                                    me</label>
-                                            </div>
+                                        <!--First radio-->
+                                        <h3>Status: </h3>
+                                        <div class="mb-[0.125rem] me-4 inline-block min-h-[1.5rem] ps-[1.5rem]">
+                                            <input
+                                                class="relative float-left  me-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-secondary-500 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-checkbox before:shadow-transparent before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-black/60 focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-black/60 focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-checkbox checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] rtl:float-right dark:border-neutral-400 dark:checked:border-primary"
+                                                type="radio" name="status" id="completed" value="completed" />
+                                            <label class="mt-px inline-block hover:cursor-pointer" for="'completed"> Completed </label>
                                         </div>
-                                        <a href="#" class="text-sm text-blue-700 hover:underline dark:text-blue-500">Lost Password?</a>
+
+                                        <!--Second radio-->
+                                        <div class="mb-[0.125rem] me-4 inline-block min-h-[1.5rem] ps-[1.5rem]">
+                                            <input
+                                                class="relative float-left -ms-[1.5rem] me-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-secondary-500 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-checkbox before:shadow-transparent before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-black/60 focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-black/60 focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-checkbox checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] rtl:float-right dark:border-neutral-400 dark:checked:border-primary"
+                                                type="radio" name="status" id="pending" value="pending" />
+                                            <label class="mt-px inline-block ps-[0.15rem] hover:cursor-pointer" for="pending"> Pending </label>
+                                        </div>
+
                                     </div>
+
+                                    <div class="flex justify-between">
+                                        <!--First radio-->
+                                        <h3>Priority: </h3>
+                                        <div class="mb-[0.125rem] me-4 inline-block min-h-[1.5rem] ps-[1.5rem]">
+                                            <input
+                                                class="relative float-left -ms-[1.5rem] me-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-secondary-500 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-checkbox before:shadow-transparent before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-black/60 focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-black/60 focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-checkbox checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] rtl:float-right dark:border-neutral-400 dark:checked:border-primary"
+                                                type="radio" name="priority" id="low" value="low" />
+                                            <label class="mt-px inline-block ps-[0.15rem] hover:cursor-pointer" for="low">Low</label>
+                                        </div>
+
+                                        <!--Second radio-->
+                                        <div class="mb-[0.125rem] me-4 inline-block min-h-[1.5rem] ps-[1.5rem]">
+                                            <input
+                                                class="relative float-left -ms-[1.5rem] me-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-secondary-500 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-checkbox before:shadow-transparent before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-black/60 focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-black/60 focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-checkbox checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] rtl:float-right dark:border-neutral-400 dark:checked:border-primary"
+                                                type="radio" name="priority" id="medium" value="medium" />
+                                            <label class="mt-px inline-block ps-[0.15rem] hover:cursor-pointer" for="low">Medium </label>
+                                        </div>
+
+                                        <!--Third radio (disabled)-->
+                                        <div class="mb-[0.125rem] inline-block min-h-[1.5rem] ps-[1.5rem]">
+                                            <input
+                                                class="relative float-left -ms-[1.5rem] me-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-secondary-500 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-checkbox before:shadow-transparent before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-black/60 focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-black/60 focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-checkbox checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] disabled:pointer-events-none disabled:opacity-60 rtl:float-right dark:border-neutral-400 dark:checked:border-primary"
+                                                type="radio" name="priority" id="high" value="High" />
+                                            <label class="mt-px inline-block ps-[0.15rem] hover:pointer-events-none" for="high">High
+                                            </label>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <!-- End Date Section -->
+                                    <div class="relative max-w-sm">
+                                        <h3>Due Date: </h3>
+                                        <input id="date" name="endDate" type="datetime-local"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            placeholder="Select date" min="">
+                                    </div>
+
+                                    <!-- Label -->
+                                    <div>
+                                        <label for="labels" class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Label</label>
+                                        <input type="text" name="label" id="labels" placeholder="Enter labels/tags seperated by commas"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                            >
+                                    </div>
+                                    <!-- Description -->
+                                    <div>
+                                        <label for="description" class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Description</label>
+                                        <input type="text" name="description" id="description" placeholder="Add a description"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
+                                    </div>
+                                    <!-- Comments -->
+                                    <div>
+                                        <label for="comments" class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Comments</label>
+                                        <textarea type="text" name="comments" id="comments" placeholder="Leave Comments for Task"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"></textarea>
+                                    </div>
+                                    <!-- Submit Button -->
                                     <button type="submit"
-                                        class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login
-                                        to your account</button>
-                                    <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
-                                        Not registered? <a href="#" class="text-blue-700 hover:underline dark:text-blue-500">Create
-                                            account</a>
-                                    </div>
+                                        class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add Task</button>
                                 </form>
                             </div>
                         </div>
@@ -128,6 +192,12 @@
     </div>
 
     <script src="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js"></script>
+  
+    <script>
+        let date = document.getElementById("date");
+        date.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));     
+    </script>
+
 
     <style>
         .main-container{

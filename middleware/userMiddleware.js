@@ -26,7 +26,7 @@ export const userMiddleware = async (req, res, next) =>{
 
       jwt.verify(authorization, JWT_SECRET, (err, decoded)=>{
         if(err){
-            return res.status(401).redirect("/dashboard")
+            return res.status(401).redirect("/login")
             //.json({message: "Unauthorized"})
         }
 

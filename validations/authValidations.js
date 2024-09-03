@@ -36,3 +36,13 @@ export const inviteSchema = Joi.object({
   email: Joi.string().email().required(),
   organization: Joi.string().required()
 })
+
+export const taskSchema = Joi.object({
+  name: Joi.string().required(),
+  status: Joi.string().required(),
+  priority: Joi.string().required(),
+  endDate: Joi.date().required(),
+  label: Joi.string().required(),
+  description: Joi.string(),
+  comments: Joi.string()
+})

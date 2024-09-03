@@ -11,12 +11,9 @@ const taskSchema = mongoose.Schema({
         type: Array,
         default:[],
     },
-    tasks:{
-        type: Array,
-        default:[],
-    }, 
-    prorities:{
+    prority:{
         type: String,
+        //options: Low, Medium, High
         default: "Medium",
     },
     labels:{
@@ -25,26 +22,24 @@ const taskSchema = mongoose.Schema({
     },
     status:{
         type: String,
+        //Status: Completed, Pending
         default: "Pending"     
     },
-    startDate:{
+    endDate:{
         type: Date,
         required: true, 
         min: new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"))
     },
-    endDate: {
-        type: Date, 
-        required: true, 
-    },
     comments: {
+        type: String,
+    },
+    description: {
         type: String,
     },
     attachments: {
         type: Array,
         default: [],
     }
-
-
 }, {
     timestamps: true
 })
