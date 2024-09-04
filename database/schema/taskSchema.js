@@ -4,7 +4,7 @@ const taskSchema = mongoose.Schema({
     name: {
         type: String,
     },
-    organizations:{
+    organization:{
          type:String,
     },
     userAssigned: {

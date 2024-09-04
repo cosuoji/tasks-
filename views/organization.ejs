@@ -90,11 +90,11 @@
                                     </div>
                                     <!-- Datalist Section -->
                                      <div>
-                                        <label for="users" class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Assign User</label>
-                                        <input type="email"
+                                        <label for="userAssigned" class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Assign User</label>
+                                        <input type="email" name="userAssigned"
                                             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                             list="emails" multiple required>
-                                        <datalist id="emails">
+                                        <datalist id="emails" name="userAssigned">
                                             <% for (let i=0; i < users.length ; i++) { %>
                                                 <option value="<%=users[i] %>">
                                                     <% } %>
@@ -169,13 +169,13 @@
                                     <div>
                                         <label for="description" class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Description</label>
                                         <input type="text" name="description" id="description" placeholder="Add a description"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
                                     </div>
                                     <!-- Comments -->
                                     <div>
                                         <label for="comments" class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Comments</label>
                                         <textarea type="text" name="comments" id="comments" placeholder="Leave Comments for Task"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"></textarea>
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required></textarea>
                                     </div>
                                     <!-- Submit Button -->
                                     <button type="submit"

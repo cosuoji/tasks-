@@ -15,8 +15,8 @@ try {
 export const addNewTask = async(req, res)=>{
     try {
         const {orgid} = req.params;
-        const {name, status, priority, endDate, label, description, comments} = req.body
-        const result = await orgService.addNewTask(orgid, name, status, priority,  endDate, label, description,comments)
+        const {name, status, priority, userAssigned, endDate, label, description, comments} = req.body
+        const result = await orgService.addNewTask(orgid, name, userAssigned, status, priority,  endDate, label, description,comments)
         res.redirect(`/org/${orgid}`)      
     } catch (err) {
      res.status(err.status || 500);

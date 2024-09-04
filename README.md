@@ -21,3 +21,8 @@ Requirements and Implementation Guide
 - Analytics depending on the statuses that are set, owners should get a weekly report of the amount of tasks that were completed, still pending etc. It should also give report on the average time to complete tasks
 
  
+
+ # !!!Ideas
+ when populating arrays make sure to check the recieving array doesn't contain a duplicate
+ Figure out the attachments for the task
+ ALso render the display task funtion creatively 

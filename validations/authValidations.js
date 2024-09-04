@@ -40,9 +40,10 @@ export const inviteSchema = Joi.object({
 export const taskSchema = Joi.object({
   name: Joi.string().required(),
   status: Joi.string().required(),
+  userAssigned: Joi.string().required(),
   priority: Joi.string().required(),
   endDate: Joi.date().required(),
   label: Joi.string().required(),
-  description: Joi.string(),
-  comments: Joi.string()
+  description: Joi.string().required(),
+  comments: Joi.string().required(),
 })
