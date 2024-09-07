@@ -4,7 +4,7 @@ export const displayTasks = async(req, res) => {
 try {
     const {orgid} = req.params;
     const result = await orgService.displayTasks(orgid);
-    res.render("organization", {organization: result.name, users: result.usersInOrg, orgid: orgid})
+    res.render("organization", {organization: result.name, users: result.usersInOrg, orgid: orgid, tasksList: JSON.stringify(result.tasksToSend)})
     
 } catch (err) {
     res.status(err.status || 500);

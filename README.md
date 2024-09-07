@@ -23,6 +23,10 @@ Requirements and Implementation Guide
  
 
  # !!!Ideas
- when populating arrays make sure to check the recieving array doesn't contain a duplicate
  Figure out the attachments for the task
- ALso render the display task funtion creatively 
+ ---Both items below are modals
+ Click to display users assigned to the task 
+ Click to display comments 
+ click to display description
+
+ - when added to a task, send an email 

@@ -8,6 +8,7 @@
     </title>
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css">
     <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
     <link rel="shortcut icon" href="//cdn2.auth0.com/styleguide/latest/lib/logos/img/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js"></script>
@@ -15,9 +16,9 @@
 </head>
 
 <body>
-    <nav class="flex items-center justify-between flex-wrap bg-gray-800 p-6">
+    <nav id="header-nav" class="bg-gray-800 p-6">
 
-        <div class="flex items-center flex-shrink-0 text-white mr-6">
+        <div class="flex items-center  text-white mr-6">
             <svg class="fill-current h-8 w-8 mr-2" width="49" height="54" viewBox="0 0 152 168"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -25,6 +26,37 @@
             </svg>
             <span class="font-semibold text-xl tracking-tight"><a href="/dashboard/profile">Taskly</a></span>
         </div>
+        <div role="button"
+            class="flex p-3 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+            <div class="grid mr-4 place-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" aria-hidden="true"
+                    class="w-5 h-5">
+                    <path fill-rule="evenodd"
+                        d="M12 2.25a.75.75 0 01.75.75v9a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM6.166 5.106a.75.75 0 010 1.06 8.25 8.25 0 1011.668 0 .75.75 0 111.06-1.06c3.808 3.807 3.808 9.98 0 13.788-3.807 3.808-9.98 3.808-13.788 0-3.808-3.807-3.808-9.98 0-13.788a.75.75 0 011.06 0z"
+                        clip-r ule="evenodd"></path>
+                </svg>
+            </div>
+            <a id="logout" href="/logout">Log Out</a>
+        </div>
     </nav>
     <div class="flex justify-center py-4">
-        <div class="w-5/6 lg:w-3/4 bg-white p-4 rounded overflow-hidden shadow-lg">
+        <div class="w-6/6 lg:w-4/4 bg-white p-4 rounded overflow-hidden shadow-lg">
+
+<style>
+    #logout{
+        color: white;
+    }
+    nav{
+        display: flex;
+        align-items: center;
+        
+    }
+
+    #header-nav{
+        flex-flow: nowrap;
+        height: 10%;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+</style>

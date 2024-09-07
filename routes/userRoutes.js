@@ -14,7 +14,7 @@ const userRoute = Router()
 
 
 userRoute.get("/profile", userMiddleware, userController.userOrganizations)
-userRoute.post('/sendinvite', userMiddleware, generateMiddleware(inviteSchema), userController.sendInviteRequest)
+userRoute.post('/sendinvite/', userMiddleware, generateMiddleware(inviteSchema), userController.sendInviteRequest)
 
 
 

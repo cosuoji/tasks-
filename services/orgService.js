@@ -8,8 +8,39 @@ export const displayTasks = async(orgid)=>{
     const orgName = await Organizations.findById(orgid)
     const usersInOrg = orgName.usersInOrganization
     const name = orgName.name
+
+    const initial = await Tasks.find({organization: orgid})
+    
+    //id, name, usersAssigned, priority, labels, status, endDate, comments, description, attachments
+    let tasksToSend = []
+  
+    for(let i = 0; i < initial.length; i++){
+       const {_id, name, userAssigned, priority, labels, status, endDate, comments, description, attachments} = initial[i]
+       let obj = {}
+       let usersToSend = []
+       console.log(userAssigned)
+       obj.id = _id.toHexString()
+       obj.name = name
+
+       function remove(userAssigned){
+        return [... new Set(userAssigned)]
+       }
+
+       obj.userAssigned = remove(userAssigned)
+    
+       obj.priority = priority
+       obj.labels = labels
+       obj.status = status
+       obj.endDate = endDate
+       obj.comments = comments
+       obj.description = description
+       obj.attachments = attachments
+       tasksToSend.push(obj)
+    }
+
+
     return {
-        name, usersInOrg, orgid
+        name, usersInOrg, orgid, tasksToSend
     }
     } catch (error) {
         throw new ErrorWithStatus(error.message, 500)
@@ -33,7 +64,7 @@ export const addNewTask = async(orgid, name, userAssigned, status, priority,  en
         let users = userAssigned.split(",")
 
          const newTask = new Tasks({
-           name, organization: orgid, userAssigned: users, priority, labels: labelArray, status,endDate, comments, description
+           name, organization: orgid, userAssigned: users, priority, labels: labelArray, status,endDate: endDate, comments, description
         })
         await newTask.save()
         return{

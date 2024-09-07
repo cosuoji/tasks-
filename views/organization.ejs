@@ -1,20 +1,19 @@
 <%- include('partials/dashboardHeader') -%>
-
-    <div class="flex">
-        <div
-            class="relative w-1/8 flex h-[calc(100vh-20rem)]  flex-col rounded-xl bg-white bg-clip-border p-4 text-gray-700 shadow-xl shadow-blue-gray-900/5">
-            <nav class="flex min-w-[240px] flex-col gap-1 p-2 font-sans text-base font-normal text-blue-gray-700">
-                <h2>Invite Users To This Board</h2>
+    <div  class="main-ish">
+        <div id="invite"
+            class="rounded-xl bg-white bg-clip-border p-4 text-gray-700 shadow-xl shadow-blue-gray-900/5">
+            <nav class="flex gap-1 font-sans text-base font-normal text-blue-gray-700">
+                <h2 class="heading-text">Invite Users</h2>
                 <div>
-                    <form class="w-full max-w-sm" method="post" action="dashboard/sendinvite">
-                        <div class="flex items-center border-b border-teal-500 py-2">
+                    <form class="" method="post" action="../dashboard/sendinvite">
+                        <div class="">
                             <input
-                                class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                                class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3  leading-tight focus:outline-none"
                                 type="text" value="<%=organization%>" aria-label="organization" id="organization"
                                 name="organization">
                             <input
-                                class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                                type="email" placeholder="Email" aria-label="email" id="email" name="email" required>
+                                class="appearance-none bg-transparent  w-full text-gray-700 mr-3  leading-tight focus:outline-none"
+                                type="email" placeholder="Add Email" aria-label="email" id="email" name="email" required>
                             <button id="submit"
                                 class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
                                 type="submit">
@@ -23,172 +22,170 @@
                         </div>
                     </form>
                 </div>
-                <div role="button"
-                    class="flex items-center w-full p-3 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                    <div class="grid mr-4 place-items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                            aria-hidden="true" class="w-5 h-5">
-                            <path fill-rule="evenodd"
-                                d="M12 2.25a.75.75 0 01.75.75v9a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM6.166 5.106a.75.75 0 010 1.06 8.25 8.25 0 1011.668 0 .75.75 0 111.06-1.06c3.808 3.807 3.808 9.98 0 13.788-3.807 3.808-9.98 3.808-13.788 0-3.808-3.807-3.808-9.98 0-13.788a.75.75 0 011.06 0z"
-                                clip-r ule="evenodd"></path>
-                        </svg>
-                    </div>
-                    <a href="/logout">Log Out</a>
-                </div>
             </nav>
         </div>
         <div class="main-container">
-            <div>
-                <h1
-                    class="bg-white-500 hover:bg-white-700  text-sm border-4 border-teal-500 text-teal py-1 px-2 rounded">
-                    LIST OF TASKS
-                </h1>
-            </div>
-            <div>
-                <h1><%=organization%></h1>
-            </div>
-            <div>
-                <!-- component -->
-                <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.min.css" />
-                
-                <!-- This is an example component -->
-                <div class="max-w-2xl mx-auto">
-                
-                    <!-- Modal toggle -->
-                    <button
-                        class="bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
-                        type="button" data-modal-toggle="authentication-modal">
-                        ADD NEW TASK
-                    </button>
-                
-                    <!-- Main modal -->
-                    <div id="authentication-modal" aria-hidden="true"
-                        class="hidden overflow-x-hidden overflow-y-auto fixed h-modal md:h-full top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center">
-                        <div class="relative w-full max-w-md px-4 h-full md:h-auto">
-                            <!-- Modal content -->
-                            <div class="bg-white rounded-lg shadow relative dark:bg-gray-700">
-                                <div class="flex justify-end p-2">
-                                    <button type="button"
-                                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
-                                        data-modal-toggle="authentication-modal">
-                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd"
-                                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                                clip-rule="evenodd"></path>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <form class="space-y-6 px-6 lg:px-8 pb-4 sm:pb-6 xl:pb-8" method="POST" action="/org/<%- orgid -%>">
-                                    <h3 class="text-xl font-medium text-gray-900 dark:text-white">Add Task</h3>
-                                    <!-- Name Section -->
-                                    <div>
-                                        <label for="name" class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Your
-                                            Task</label>
-                                        <input type="text" name="name" id="name"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                            placeholder="Task Name" required="">
-                                    </div>
-                                    <!-- Datalist Section -->
-                                     <div>
-                                        <label for="userAssigned" class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Assign User</label>
-                                        <input type="email" name="userAssigned"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                            list="emails" multiple required>
-                                        <datalist id="emails" name="userAssigned">
-                                            <% for (let i=0; i < users.length ; i++) { %>
-                                                <option value="<%=users[i] %>">
-                                                    <% } %>
-                                        </datalist>
-                                     </div>
-                                    <!-- Radio Section -->
-                                    <div>
-                                    <div class="flex justify-between">
-                                        <!--First radio-->
-                                        <h3>Status: </h3>
-                                        <div class="mb-[0.125rem] me-4 inline-block min-h-[1.5rem] ps-[1.5rem]">
-                                            <input
-                                                class="relative float-left  me-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-secondary-500 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-checkbox before:shadow-transparent before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-black/60 focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-black/60 focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-checkbox checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] rtl:float-right dark:border-neutral-400 dark:checked:border-primary"
-                                                type="radio" name="status" id="completed" value="completed" />
-                                            <label class="mt-px inline-block hover:cursor-pointer" for="'completed"> Completed </label>
-                                        </div>
-
-                                        <!--Second radio-->
-                                        <div class="mb-[0.125rem] me-4 inline-block min-h-[1.5rem] ps-[1.5rem]">
-                                            <input
-                                                class="relative float-left -ms-[1.5rem] me-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-secondary-500 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-checkbox before:shadow-transparent before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-black/60 focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-black/60 focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-checkbox checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] rtl:float-right dark:border-neutral-400 dark:checked:border-primary"
-                                                type="radio" name="status" id="pending" value="pending" />
-                                            <label class="mt-px inline-block ps-[0.15rem] hover:cursor-pointer" for="pending"> Pending </label>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="flex justify-between">
-                                        <!--First radio-->
-                                        <h3>Priority: </h3>
-                                        <div class="mb-[0.125rem] me-4 inline-block min-h-[1.5rem] ps-[1.5rem]">
-                                            <input
-                                                class="relative float-left -ms-[1.5rem] me-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-secondary-500 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-checkbox before:shadow-transparent before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-black/60 focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-black/60 focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-checkbox checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] rtl:float-right dark:border-neutral-400 dark:checked:border-primary"
-                                                type="radio" name="priority" id="low" value="low" />
-                                            <label class="mt-px inline-block ps-[0.15rem] hover:cursor-pointer" for="low">Low</label>
-                                        </div>
-
-                                        <!--Second radio-->
-                                        <div class="mb-[0.125rem] me-4 inline-block min-h-[1.5rem] ps-[1.5rem]">
-                                            <input
-                                                class="relative float-left -ms-[1.5rem] me-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-secondary-500 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-checkbox before:shadow-transparent before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-black/60 focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-black/60 focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-checkbox checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] rtl:float-right dark:border-neutral-400 dark:checked:border-primary"
-                                                type="radio" name="priority" id="medium" value="medium" />
-                                            <label class="mt-px inline-block ps-[0.15rem] hover:cursor-pointer" for="low">Medium </label>
-                                        </div>
-
-                                        <!--Third radio (disabled)-->
-                                        <div class="mb-[0.125rem] inline-block min-h-[1.5rem] ps-[1.5rem]">
-                                            <input
-                                                class="relative float-left -ms-[1.5rem] me-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-secondary-500 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-checkbox before:shadow-transparent before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-black/60 focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-black/60 focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-checkbox checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] disabled:pointer-events-none disabled:opacity-60 rtl:float-right dark:border-neutral-400 dark:checked:border-primary"
-                                                type="radio" name="priority" id="high" value="High" />
-                                            <label class="mt-px inline-block ps-[0.15rem] hover:pointer-events-none" for="high">High
-                                            </label>
-                                        </div>
-                                    </div>
-                                    </div>
-                                    <!-- End Date Section -->
-                                    <div class="relative max-w-sm">
-                                        <h3>Due Date: </h3>
-                                        <input id="date" name="endDate" type="datetime-local"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            placeholder="Select date" min="">
-                                    </div>
-
-                                    <!-- Label -->
-                                    <div>
-                                        <label for="labels" class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Label</label>
-                                        <input type="text" name="label" id="labels" placeholder="Enter labels/tags seperated by commas"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                            >
-                                    </div>
-                                    <!-- Description -->
-                                    <div>
-                                        <label for="description" class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Description</label>
-                                        <input type="text" name="description" id="description" placeholder="Add a description"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
-                                    </div>
-                                    <!-- Comments -->
-                                    <div>
-                                        <label for="comments" class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Comments</label>
-                                        <textarea type="text" name="comments" id="comments" placeholder="Leave Comments for Task"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required></textarea>
-                                    </div>
-                                    <!-- Submit Button -->
-                                    <button type="submit"
-                                        class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add Task</button>
-                                </form>
+            <div id="headers" class="headers">
+                            <div>
+                                <h1 class="bg-white-500 hover:bg-white-700  text-sm border-4 border-teal-500 text-teal py-1 px-2 rounded">
+                                    LIST OF TASKS
+                                </h1>
                             </div>
-                        </div>
-                    </div>
-                </div>
+                            <!-- component -->
+                            <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.min.css" />
+                            
+                            <!-- This is an example component -->
+                            <div>
+                            
+                                <!-- Modal toggle -->
+                                <button
+                                    class="bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
+                                    type="button" data-modal-toggle="authentication-modal">
+                                    ADD NEW TASK
+                                </button>
+                            
+                                <!-- Main modal -->
+                                <div id="authentication-modal" aria-hidden="true"
+                                    class="hidden overflow-x-hidden overflow-y-auto fixed h-modal md:h-full top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center">
+                                    <div class="relative w-full max-w-md px-4 h-full md:h-auto">
+                                        <!-- Modal content -->
+                                        <div class="bg-white rounded-lg shadow relative dark:bg-gray-700">
+                                            <div class="flex justify-end p-2">
+                                                <button type="button"
+                                                    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
+                                                    data-modal-toggle="authentication-modal">
+                                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd"
+                                                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                                            clip-rule="evenodd"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <form class="space-y-6 px-6 lg:px-8 pb-4 sm:pb-6 xl:pb-8" method="POST" action="/org/<%- orgid -%>">
+                                                <h3 class="text-xl font-medium text-gray-900 dark:text-white">Add Task</h3>
+                                                <!-- Name Section -->
+                                                <div>
+                                                    <label for="name" class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Your
+                                                        Task</label>
+                                                    <input type="text" name="name" id="name"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                                        placeholder="Task Name" required="">
+                                                </div>
+                                                <!-- Datalist Section -->
+                                                <div>
+                                                    <label for="userAssigned"
+                                                        class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Assign User</label>
+                                                    <input type="email" name="userAssigned"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                                        list="emails" multiple required>
+                                                    <datalist id="emails" name="userAssigned">
+                                                        <% for (let i=0; i < users.length ; i++) { %>
+                                                            <option value="<%=users[i] %>">
+                                                                <% } %>
+                                                    </datalist>
+                                                </div>
+                                                <!-- Radio Section -->
+                                                <div>
+                                                    <div class="flex justify-between">
+                                                        <!--First radio-->
+                                                        <h3>Status: </h3>
+                                                        <div class="mb-[0.125rem] me-4 inline-block min-h-[1.5rem] ps-[1.5rem]">
+                                                            <input
+                                                                class="relative float-left  me-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-secondary-500 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-checkbox before:shadow-transparent before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-black/60 focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-black/60 focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-checkbox checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] rtl:float-right dark:border-neutral-400 dark:checked:border-primary"
+                                                                type="radio" name="status" id="completed" value="completed" />
+                                                            <label class="mt-px inline-block hover:cursor-pointer" for="'completed"> Completed
+                                                            </label>
+                                                        </div>
+                            
+                                                        <!--Second radio-->
+                                                        <div class="mb-[0.125rem] me-4 inline-block min-h-[1.5rem] ps-[1.5rem]">
+                                                            <input
+                                                                class="relative float-left -ms-[1.5rem] me-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-secondary-500 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-checkbox before:shadow-transparent before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-black/60 focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-black/60 focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-checkbox checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] rtl:float-right dark:border-neutral-400 dark:checked:border-primary"
+                                                                type="radio" name="status" id="pending" value="pending" />
+                                                            <label class="mt-px inline-block ps-[0.15rem] hover:cursor-pointer" for="pending">
+                                                                Pending </label>
+                                                        </div>
+                            
+                                                    </div>
+                            
+                                                    <div class="flex justify-between">
+                                                        <!--First radio-->
+                                                        <h3>Priority: </h3>
+                                                        <div class="mb-[0.125rem] me-4 inline-block min-h-[1.5rem] ps-[1.5rem]">
+                                                            <input
+                                                                class="relative float-left -ms-[1.5rem] me-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-secondary-500 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-checkbox before:shadow-transparent before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-black/60 focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-black/60 focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-checkbox checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] rtl:float-right dark:border-neutral-400 dark:checked:border-primary"
+                                                                type="radio" name="priority" id="low" value="low" />
+                                                            <label class="mt-px inline-block ps-[0.15rem] hover:cursor-pointer"
+                                                                for="low">Low</label>
+                                                        </div>
+                            
+                                                        <!--Second radio-->
+                                                        <div class="mb-[0.125rem] me-4 inline-block min-h-[1.5rem] ps-[1.5rem]">
+                                                            <input
+                                                                class="relative float-left -ms-[1.5rem] me-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-secondary-500 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-checkbox before:shadow-transparent before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-black/60 focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-black/60 focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-checkbox checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] rtl:float-right dark:border-neutral-400 dark:checked:border-primary"
+                                                                type="radio" name="priority" id="medium" value="medium" />
+                                                            <label class="mt-px inline-block ps-[0.15rem] hover:cursor-pointer" for="low">Medium
+                                                            </label>
+                                                        </div>
+                            
+                                                        <!--Third radio (disabled)-->
+                                                        <div class="mb-[0.125rem] inline-block min-h-[1.5rem] ps-[1.5rem]">
+                                                            <input
+                                                                class="relative float-left -ms-[1.5rem] me-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-secondary-500 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-checkbox before:shadow-transparent before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-black/60 focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-black/60 focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-checkbox checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] disabled:pointer-events-none disabled:opacity-60 rtl:float-right dark:border-neutral-400 dark:checked:border-primary"
+                                                                type="radio" name="priority" id="high" value="High" />
+                                                            <label class="mt-px inline-block ps-[0.15rem] hover:pointer-events-none" for="high">High
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- End Date Section -->
+                                                <div class="relative max-w-sm">
+                                                    <h3>Due Date: </h3>
+                                                    <input id="date" name="endDate" type="datetime-local"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        placeholder="Select date" min="">
+                                                </div>
+                            
+                                                <!-- Label -->
+                                                <div>
+                                                    <label for="labels"
+                                                        class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Label</label>
+                                                    <input type="text" name="label" id="labels" placeholder="Enter labels/tags seperated by commas"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
+                                                </div>
+                                                <!-- Description -->
+                                                <div>
+                                                    <label for="description"
+                                                        class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Description</label>
+                                                    <input type="text" name="description" id="description" placeholder="Add a description"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                                        required>
+                                                </div>
+                                                <!-- Comments -->
+                                                <div>
+                                                    <label for="comments"
+                                                        class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Comments</label>
+                                                    <textarea type="text" name="comments" id="comments" placeholder="Leave Comments for Task"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                                        required></textarea>
+                                                </div>
+                                                <!-- Submit Button -->
+                                                <button type="submit"
+                                                    class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add
+                                                    Task</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
             </div>
-            
-        </div>
+            <div class="relative overflow-x-auto">
+            <table id="table" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
 
+            </table>
+            </div>
+
+        </div>
     </div>
 
     <script src="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js"></script>
@@ -196,14 +193,195 @@
     <script>
         let date = document.getElementById("date");
         date.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));     
+
+        let tasks = []
+        window.app = <%- tasksList %>
+        tasks = [...window.app]
+        let arrayToEdit = [...tasks]
+
+        for(let i = 0; i < arrayToEdit.length; i++){
+            delete arrayToEdit[i].id          
+        }
+
+        function generateTableHead(table){
+            let thead = table.createTHead();
+            thead.classList.add("text-xs", "text-gray-700", "bg-gray-50", "dark:bg-gray-700", "dark:text-gray-400")
+            let row = thead.insertRow()
+            row.classList.add("bg-white", "dark:bg-gray-800")
+
+              for (let key of data) {
+                let th = document.createElement("th");
+                 if (key === "name") key = "Task"
+                 if(key === "userAssigned") key = "Users Assigned"
+                if (key === "priority") key = "Priority"
+                if (key === "endDate") key = "Deadline"
+                if (key === "comments") key = "Comments"
+                if (key === "description") key = "Description"
+                if (key === "attachments") key = "Attachments"
+                if(key === "status") key = "Status"
+
+                let text = document.createTextNode(key);
+                th.classList.add("px-6", "py-4", "font-medium", "text-gray-900", "whitespace-nowrap", "dark:text-white")
+                th.appendChild(text);
+                row.appendChild(th);
+            }
+        }
+
+
+        function generateTable(table, data) {
+                for (let element of data) {
+                    let row = table.insertRow();
+                    row.classList.add("bg-white", "dark:bg-gray-800")
+                    for (key in element) {
+                        let cell = row.insertCell();
+                        cell.classList.add("px-6", "py-4")
+                        console.log(element[key])
+                        if(key === "userAssigned"){
+                         let text = document.createTextNode(element[key].length);
+                         let i = document.createElement("span")
+                         i.classList.add("fas", "fa-solid", "fa-user", "user")                  
+                         i.appendChild(text)
+                         cell.appendChild(i)
+
+                        } else if(key === "labels"){
+                         let text = document.createTextNode(element[key].length);
+                         let i = document.createElement("span")
+                         i.classList.add("fas", "fa-sharp", "fa-solid", "fa-tags","tags")
+                         i.appendChild(text)
+                         cell.appendChild(i)
+ 
+                        }
+
+                        else if(key === "endDate"){
+                           const toDisplay = element[key].split(" ").slice(0, 5).join(" ")
+                          let text = document.createTextNode(toDisplay);
+                          let p = document.createElement("p")
+                          p.innerHTML = toDisplay
+                          cell.appendChild(p)
+                        }
+
+                        else if(key === "comments"){
+                            let text = document.createTextNode("");
+                            let i = document.createElement("span")
+                            i.classList.add("fas", "fa-solid", "fa-comment", "comments")
+                            i.appendChild(text)
+                            cell.appendChild(i)
+                                                    
+                        }
+
+                        else if (key === "description") {
+                            let text = document.createTextNode("");
+                            let i = document.createElement("span")
+                            i.classList.add("fas", "fa-solid", "fa-closed-captioning", "description")
+                            i.appendChild(text)
+                            cell.appendChild(i)
+
+                        }
+                        
+                        else if (key === "status") {
+                            let text = document.createTextNode("");
+                            let i = document.createElement("p")
+                            if(element[key] === "completed"){
+                             i.innerHTML = "COMPLETED"
+                             i.classList.add("status", "text-white", "bg-teal-500")
+                            }
+                            else{
+                              i.innerHTML = "PENDING"
+                              i.classList.add("status", "text-white", "bg-red-500", "text-center")
+                            }
+                            
+                            i.appendChild(text)
+                            cell.appendChild(i)
+
+                        }
+                     else if (key === "status") {
+                            let text = document.createTextNode("");
+                            let i = document.createElement("p")
+                            if (element[key] === "completed") {
+                                i.innerHTML = "COMPLETED"
+                                i.classList.add("status", "text-white", "bg-teal-500")
+                            }
+                            else {
+                                i.innerHTML = "PENDING"
+                                i.classList.add("status", "text-white", "bg-red-500", "text-center")
+                            }
+
+                            i.appendChild(text)
+                            cell.appendChild(i)
+
+                        }
+                        else{
+                            let text = document.createTextNode(element[key]);
+                            cell.appendChild(text);
+                        }
+
+                    }
+                }
+            }
+
+
+
+        let table = document.getElementById("table")
+        let data = Object.keys(tasks[0]);
+        generateTableHead(table, arrayToEdit)
+        generateTable(table, arrayToEdit);
+
+
+
+
+
+
     </script>
 
 
     <style>
+        .main-ish{
+            width: 100%;
+        }
         .main-container{
             display: flex;
             width: 100%;
+            flex-direction: column;
+            padding: 1%;
+        }
+
+        .headers{
+            width: 100%;
+            display: flex;
             justify-content: space-between;
-            padding: 10px;
+            flex-flow: row;
+        }
+    
+        .user{
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+
+        #invite{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        nav{
+            display: flex;
+            flex-direction: column;
+        }
+
+        #submit{
+            width: 100%;
+        }
+        .heading-text{
+            margin-left: 8px;
+            color: teal;
+            font-size: larger;
+        }
+
+        table{
+            width: 100%    
+        }
+
+        .status{
+            padding: 20px;
         }
     </style>

@@ -3,9 +3,8 @@ import * as userService from "../services/userService.js"
 export const sendInviteRequest = async(req, res)  =>{
 try {
     const {email, organization} = req.body;
-    //console.log(organization)
     const result = await userService.sendInviteRequest(email, organization);
-    res.redirect("/dashboard/profile")
+    res.redirect(`/`)
     
 } catch (err) {
     res.status(err.status || 500);

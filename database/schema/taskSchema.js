@@ -11,7 +11,7 @@ const taskSchema = mongoose.Schema({
         type: Array,
         default:[],
     },
-    prority:{
+    priority:{
         type: String,
         //options: Low, Medium, High
         default: "Medium",
@@ -26,9 +26,8 @@ const taskSchema = mongoose.Schema({
         default: "Pending"     
     },
     endDate:{
-        type: Date,
+        type: String,
         required: true, 
-        min: new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"))
     },
     comments: {
         type: String,

@@ -27,6 +27,11 @@ export const sendInviteRequest = async(email, organization) =>{
              } else {
          await sendEmail(email, `${sender.name} added you to ${organization}` , `Please login "here" to access the taskboard`);
          }
+
+         const orgid = organizationInfo._id
+         return {
+          result: orgid
+         }
     } catch (error) {
         throw new ErrorWithStatus(error.message, 500)
     }
