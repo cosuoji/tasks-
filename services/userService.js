@@ -18,10 +18,13 @@ export const sendInviteRequest = async(email, organization) =>{
 
        if(organizationInfo.usersInOrganization.includes(email)){
           throw new ErrorWithStatus("User exists in Organization")
+       } else {
+          organizationInfo.usersInOrganization.push(email)
+          await organizationInfo.save()
        }
 
-       organizationInfo.usersInOrganization.push(email)
-       await organizationInfo.save()
+
+
         if(!user){
            await sendEmail(email, `${sender.name} added you to ${organization}` , `Please sign up with us at "email" to access the taskboard`);
              } else {

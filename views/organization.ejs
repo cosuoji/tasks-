@@ -33,7 +33,16 @@
                             </div>
                             <!-- component -->
                             <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.min.css" />
-                            
+                            <section class="modal hidden">
+                                <div class="flex">
+                                    <button class="btn-close">⨉</button>
+                                </div>
+                                <div class="flex" id="information">
+                                </div>
+                            </section>
+                            <div class="overlay hidden">
+                       
+                            </div>
                             <!-- This is an example component -->
                             <div>
                             
@@ -43,7 +52,8 @@
                                     type="button" data-modal-toggle="authentication-modal">
                                     ADD NEW TASK
                                 </button>
-                            
+
+
                                 <!-- Main modal -->
                                 <div id="authentication-modal" aria-hidden="true"
                                     class="hidden overflow-x-hidden overflow-y-auto fixed h-modal md:h-full top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center">
@@ -169,6 +179,7 @@
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                                         required></textarea>
                                                 </div>
+                                            
                                                 <!-- Submit Button -->
                                                 <button type="submit"
                                                     class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add
@@ -194,14 +205,35 @@
         let date = document.getElementById("date");
         date.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));     
 
+        const modal = document.querySelector(".modal");
+        const overlay = document.querySelector(".overlay");
+        const closeModalBtn = document.querySelector(".btn-close");
+        const infoModal = document.getElementById("information")
+
+        const openModal = function () {
+                modal.classList.remove("hidden");
+                overlay.classList.remove("hidden");
+            };
+
+        const closeModal = function () {
+                modal.classList.add("hidden");
+                overlay.classList.add("hidden");
+                information.innerHTML = ""
+         };    
+
+         closeModalBtn.addEventListener("click", closeModal);
+
         let tasks = []
         window.app = <%- tasksList %>
         tasks = [...window.app]
         let arrayToEdit = [...tasks]
+        let placeholder = []
 
         for(let i = 0; i < arrayToEdit.length; i++){
+            placeholder.push(arrayToEdit[i].id)
             delete arrayToEdit[i].id          
         }
+
 
         function generateTableHead(table){
             let thead = table.createTHead();
@@ -219,6 +251,7 @@
                 if (key === "description") key = "Description"
                 if (key === "attachments") key = "Attachments"
                 if(key === "status") key = "Status"
+     
 
                 let text = document.createTextNode(key);
                 th.classList.add("px-6", "py-4", "font-medium", "text-gray-900", "whitespace-nowrap", "dark:text-white")
@@ -235,18 +268,28 @@
                     for (key in element) {
                         let cell = row.insertCell();
                         cell.classList.add("px-6", "py-4")
-                        console.log(element[key])
+                        if(key === "name"){
+                            let text = document.createTextNode("");
+                            let i = document.createElement("p")
+                            i.classList.add("name-for-ids")
+                            i.dataset.ids = ''
+                            i.appendChild(text)
+                            cell.appendChild(i)
+                        }
                         if(key === "userAssigned"){
                          let text = document.createTextNode(element[key].length);
                          let i = document.createElement("span")
-                         i.classList.add("fas", "fa-solid", "fa-user", "user")                  
+                         i.classList.add("fas", "fa-solid", "fa-user", "user") 
+                         i.dataset.users = element[key]                 
                          i.appendChild(text)
                          cell.appendChild(i)
 
-                        } else if(key === "labels"){
+                        } 
+                        else if(key === "labels"){
                          let text = document.createTextNode(element[key].length);
                          let i = document.createElement("span")
                          i.classList.add("fas", "fa-sharp", "fa-solid", "fa-tags","tags")
+                         i.dataset.tags = element[key]  
                          i.appendChild(text)
                          cell.appendChild(i)
  
@@ -264,6 +307,7 @@
                             let text = document.createTextNode("");
                             let i = document.createElement("span")
                             i.classList.add("fas", "fa-solid", "fa-comment", "comments")
+                            i.dataset.comments =  element[key]
                             i.appendChild(text)
                             cell.appendChild(i)
                                                     
@@ -273,6 +317,7 @@
                             let text = document.createTextNode("");
                             let i = document.createElement("span")
                             i.classList.add("fas", "fa-solid", "fa-closed-captioning", "description")
+                            i.dataset.description = element[key]
                             i.appendChild(text)
                             cell.appendChild(i)
 
@@ -294,16 +339,21 @@
                             cell.appendChild(i)
 
                         }
-                     else if (key === "status") {
+                     else if (key === "priority") {
                             let text = document.createTextNode("");
                             let i = document.createElement("p")
-                            if (element[key] === "completed") {
-                                i.innerHTML = "COMPLETED"
-                                i.classList.add("status", "text-white", "bg-teal-500")
+                            if (element[key] === "Medium") {
+                                i.innerHTML = "MEDIUM"
+                                i.classList.add("priority", "text-yellow-500")
+                            }
+
+                            else if (element[key] === "low") {
+                                i.innerHTML = "LOW"
+                                i.classList.add("priority", "text-yellow-300")
                             }
                             else {
-                                i.innerHTML = "PENDING"
-                                i.classList.add("status", "text-white", "bg-red-500", "text-center")
+                                i.innerHTML = "HIGH"
+                                i.classList.add("priority", "text-yellow-800")
                             }
 
                             i.appendChild(text)
@@ -312,6 +362,7 @@
                         }
                         else{
                             let text = document.createTextNode(element[key]);
+                            
                             cell.appendChild(text);
                         }
 
@@ -328,13 +379,109 @@
 
 
 
+    let names = document.getElementsByClassName("name-for-ids")
+
+    for(let i = 0; i < names.length; i++){
+        names[i].dataset.ids = placeholder[i]
+    
+    }
+
+    //display the users on click
+    let listOfUsers = document.getElementsByClassName("user")
+    for(let i = 0; i < listOfUsers.length; i++){
+        listOfUsers[i].addEventListener("click", e=>{
+            // let text = document.createTextNode(element[key].length);
+            // let i = document.createElement("span")
+            // i.classList.add("fas", "fa-solid", "fa-user", "user")
+            // i.dataset.users = element[key]
+            // i.appendChild(text)
+            // cell.appendChild(i)
+          let text = document.createTextNode("")
+          let p = document.createElement("p");
+          p.innerHTML = listOfUsers[i].dataset.users
+          p.classList.add("user-modal")
+          p.appendChild(text)
+          information.appendChild(p)
+
+        })
+
+        listOfUsers[i].addEventListener("click", openModal) 
+    }
 
 
+
+    //display the labels on click
+        let listOfLabels = document.getElementsByClassName("tags")
+        for (let i = 0; i < listOfLabels.length; i++) {
+            listOfLabels[i].addEventListener("click", e => {
+                let text = document.createTextNode("")
+                let p = document.createElement("p");
+                p.innerHTML = listOfLabels[i].dataset.tags
+                p.classList.add("user-modal")
+                p.appendChild(text)
+                information.appendChild(p)
+
+            })
+
+                listOfLabels[i].addEventListener("click", openModal)
+            }
+
+    
+        //display the comments on click
+        let listOfComments = document.getElementsByClassName("comments")
+        for (let i = 0; i < listOfComments.length; i++) {
+            listOfComments[i].addEventListener("click", e => {
+                let text = document.createTextNode("")
+                let p = document.createElement("p");
+                p.innerHTML = listOfComments[i].dataset.comments
+                p.classList.add("user-modal")
+                p.appendChild(text)
+                information.appendChild(p)
+
+            })
+
+            listOfComments[i].addEventListener("click", openModal)
+        }
+        
+        //display the description on click
+        let listOfD = document.getElementsByClassName("description")
+        for (let i = 0; i < listOfD.length; i++) {
+            listOfD[i].addEventListener("click", e => {
+                let text = document.createTextNode("")
+                let p = document.createElement("p");
+                p.innerHTML = listOfD[i].dataset.description
+                p.classList.add("user-modal")
+                p.appendChild(text)
+                information.appendChild(p)
+
+            })
+
+            listOfD[i].addEventListener("click", openModal)
+        }
+
+                   
+
+
+
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+            modalClose();
+        }
+    })
 
     </script>
 
 
     <style>
+        .user-modal{
+            display: flex;
+            align-items: center;
+
+            width: 50%;
+        }
+        .user:hover, .tags:hover, .comments:hover, .description:hover{
+            cursor: pointer;
+        }
         .main-ish{
             width: 100%;
         }
@@ -384,4 +531,81 @@
         .status{
             padding: 20px;
         }
+
+        .modal {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.4rem;
+        width: 50%;
+        padding: 1.3rem;
+        min-height: 250px;
+        position: absolute;
+        top: 20%;
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 15px;
+        z-index: 2;
+        overflow: hidden;
+        overflow-x: scroll;
+        }
+        .overlay {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(3px);
+        z-index: 1;
+        }
+
+.modal .flex {
+  display: flex;
+  align-items: center;
+
+}
+
+
+.modal p {
+  font-size: 0.9rem;
+  display: flex;
+  color: #777;
+  margin: 0.4rem 0 0.2rem;
+  word-wrap: break-word;
+  width: 50%;
+
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  font-weight: 600;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1.4rem;
+  font-weight: 700;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1em;
+}
+
+
+.btn-close {
+  transform: translate(10px, -20px);
+  padding: 0.5rem 0.7rem;
+  background: #eee;
+  border-radius: 50%;
+}
+
+.hidden {
+  display: none;
+}
+        
     </style>

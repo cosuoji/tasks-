@@ -46,4 +46,5 @@ export const taskSchema = Joi.object({
   label: Joi.string().required(),
   description: Joi.string().required(),
   comments: Joi.string().required(),
+  attachments: Joi.any()
 })

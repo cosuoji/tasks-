@@ -15,6 +15,7 @@ try {
 export const addNewTask = async(req, res)=>{
     try {
         const {orgid} = req.params;
+        console.log(req.body)
         const {name, status, priority, userAssigned, endDate, label, description, comments} = req.body
         const result = await orgService.addNewTask(orgid, name, userAssigned, status, priority,  endDate, label, description,comments)
         res.redirect(`/org/${orgid}`)      

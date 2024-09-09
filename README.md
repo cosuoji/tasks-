@@ -24,9 +24,7 @@ Requirements and Implementation Guide
 
  # !!!Ideas
  Figure out the attachments for the task
- ---Both items below are modals
- Click to display users assigned to the task 
- Click to display comments 
- click to display description
-
- - when added to a task, send an email 
+ - filter by status, prioriities
+ - when added to a task, send an email
+ - change name in place 
+ - routes to patch each feature

@@ -1,7 +1,10 @@
 import Organizations from "../database/schema/organizationSchema.js";
 import Tasks from "../database/schema/taskSchema.js";
 import ErrorWithStatus from "../exceptions/errorStatus.js";
-import moment from "moment"
+
+
+
+
 
 export const displayTasks = async(orgid)=>{
     try {
@@ -18,16 +21,16 @@ export const displayTasks = async(orgid)=>{
        const {_id, name, userAssigned, priority, labels, status, endDate, comments, description, attachments} = initial[i]
        let obj = {}
        let usersToSend = []
-       console.log(userAssigned)
        obj.id = _id.toHexString()
        obj.name = name
 
+       //remove duplicates
        function remove(userAssigned){
         return [... new Set(userAssigned)]
        }
 
+
        obj.userAssigned = remove(userAssigned)
-    
        obj.priority = priority
        obj.labels = labels
        obj.status = status
@@ -35,6 +38,8 @@ export const displayTasks = async(orgid)=>{
        obj.comments = comments
        obj.description = description
        obj.attachments = attachments
+
+
        tasksToSend.push(obj)
     }
 
