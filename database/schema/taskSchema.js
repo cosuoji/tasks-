@@ -26,7 +26,7 @@ const taskSchema = mongoose.Schema({
         default: "Pending"     
     },
     endDate:{
-        type: String,
+        type: Date,
         required: true, 
     },
     comments: {

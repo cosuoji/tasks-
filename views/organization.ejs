@@ -223,9 +223,14 @@
 
          closeModalBtn.addEventListener("click", closeModal);
 
-        let tasks = []
+        let tasks, orgUsers = []
         window.app = <%- tasksList %>
         tasks = [...window.app]
+        let userList = "<%= users %>"
+     
+        orgUsers = [...userList.split(",")]
+
+
         let arrayToEdit = [...tasks]
         let placeholder = []
 
@@ -297,9 +302,10 @@
 
                         else if(key === "endDate"){
                            const toDisplay = element[key].split(" ").slice(0, 5).join(" ")
-                          let text = document.createTextNode(toDisplay);
+                           const display = moment(toDisplay).format('MMMM Do YYYY, h:mm:ss a')
+                          let text = document.createTextNode(display);
                           let p = document.createElement("p")
-                          p.innerHTML = toDisplay
+                          p.innerHTML = display
                           cell.appendChild(p)
                         }
 
@@ -388,20 +394,80 @@
 
     //display the users on click
     let listOfUsers = document.getElementsByClassName("user")
+        
+
+
     for(let i = 0; i < listOfUsers.length; i++){
         listOfUsers[i].addEventListener("click", e=>{
-            // let text = document.createTextNode(element[key].length);
-            // let i = document.createElement("span")
-            // i.classList.add("fas", "fa-solid", "fa-user", "user")
-            // i.dataset.users = element[key]
-            // i.appendChild(text)
-            // cell.appendChild(i)
-          let text = document.createTextNode("")
+            let text = document.createTextNode("X")
+            let heading = document.createElement("h2")
+            heading.innerHTML = "click email to remove from task"
+            heading.classList.add("text-red-600", "user-heading")
+
+            information.append(heading)
+
+
           let p = document.createElement("p");
-          p.innerHTML = listOfUsers[i].dataset.users
-          p.classList.add("user-modal")
-          p.appendChild(text)
-          information.appendChild(p)
+          //p.innerHTML = listOfUsers[i].dataset.users
+          let users = listOfUsers[i].dataset.users.split(",")
+
+          let ul = document.createElement("ul")
+          ul.classList.add("user-modal")
+
+          for(let i = 0; i < users.length; i++){
+           
+            let li = document.createElement("li")
+            const textNode = document.createTextNode(users[i])
+            li.classList.add("users-in-modal")
+            li.appendChild(textNode)
+            
+            ul.appendChild(li)
+            information.appendChild(ul)
+
+          }
+
+        let usersToMark = document.getElementsByClassName("users-in-modal")
+            for (let i = 0; i < usersToMark.length; i++) {
+                usersToMark[i].addEventListener("click", item => {
+                    usersToMark[i].classList.toggle("line-through")
+                })
+            }
+  
+          //add datalist and button here, need to be able to remove users and add users
+        // to the task 
+            const newDiv = document.createElement("div")
+            const label = document.createElement('label')
+
+            label.setAttribute("for", "datalist")
+
+            const input = document.createElement("input")
+            input.setAttribute("type", "email")
+            input.setAttribute("multiple", "")
+            input.setAttribute("name", "datalist")
+            input.setAttribute("list", "datalist")
+        
+
+            const datalist = document.createElement("datalist")
+            for(let i   = 0; i < orgUsers.length; i++){
+                let option = document.createElement("option")
+                option.value = orgUsers[i]
+                datalist.id = "datalist"
+                datalist.setAttribute("name", "datalst")
+                datalist.appendChild(option)
+            }
+
+            newDiv.appendChild(label)
+            newDiv.appendChild(input)
+            newDiv.appendChild(datalist)
+           
+ 
+
+            let button = document.createElement("button")
+            button.classList.add("bg-teal-700", "hover:bg-teal-700", "text-white", "font-bold", "py-2", "px-4", "rounded")
+            let buttonTxt = document.createTextNode("Edit/Save Users")
+            button.appendChild(buttonTxt)
+            newDiv.appendChild(button)
+            information.appendChild(newDiv)
 
         })
 
@@ -415,11 +481,17 @@
         for (let i = 0; i < listOfLabels.length; i++) {
             listOfLabels[i].addEventListener("click", e => {
                 let text = document.createTextNode("")
-                let p = document.createElement("p");
+                let p = document.createElement("textarea");
                 p.innerHTML = listOfLabels[i].dataset.tags
                 p.classList.add("user-modal")
                 p.appendChild(text)
                 information.appendChild(p)
+
+                let button = document.createElement("button")
+                button.classList.add("bg-teal-700", "hover:bg-teal-700", "text-white", "font-bold", "py-2", "px-4", "rounded")
+                let buttonTxt = document.createTextNode("Edit Labels")
+                button.appendChild(buttonTxt)
+                information.appendChild(button)
 
             })
 
@@ -432,11 +504,19 @@
         for (let i = 0; i < listOfComments.length; i++) {
             listOfComments[i].addEventListener("click", e => {
                 let text = document.createTextNode("")
-                let p = document.createElement("p");
+                let p = document.createElement("textarea");
                 p.innerHTML = listOfComments[i].dataset.comments
                 p.classList.add("user-modal")
                 p.appendChild(text)
                 information.appendChild(p)
+
+
+
+                let button = document.createElement("button")
+                button.classList.add("bg-teal-700", "hover:bg-teal-700", "text-white", "font-bold", "py-2", "px-4", "rounded")
+                let buttonTxt = document.createTextNode("Edit Comments")
+                button.appendChild(buttonTxt)
+                information.appendChild(button)
 
             })
 
@@ -448,12 +528,17 @@
         for (let i = 0; i < listOfD.length; i++) {
             listOfD[i].addEventListener("click", e => {
                 let text = document.createTextNode("")
-                let p = document.createElement("p");
-                p.innerHTML = listOfD[i].dataset.description
-                p.classList.add("user-modal")
+                let p = document.createElement("input");
+                p.value = listOfD[i].dataset.description
+                p.classList.add("user-modal", "text-box")
                 p.appendChild(text)
                 information.appendChild(p)
 
+                let button = document.createElement("button")
+                button.classList.add("bg-teal-700", "hover:bg-teal-700", "text-white", "font-bold", "py-2", "px-4", "rounded")
+                let buttonTxt = document.createTextNode("Edit Description")
+                button.appendChild(buttonTxt)
+                information.appendChild(button)
             })
 
             listOfD[i].addEventListener("click", openModal)
@@ -465,19 +550,31 @@
 
     document.addEventListener("keydown", function (e) {
         if (e.key === "Escape" && !modal.classList.contains("hidden")) {
-            modalClose();
+            closeModal();
         }
     })
+
 
     </script>
 
 
     <style>
-        .user-modal{
+        /* .user-modal{
             display: flex;
+            flex-direction: column;
+            flex-flow: wrap;
             align-items: center;
+            justify-content: center;
+        } */
 
-            width: 50%;
+        #information{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .text-box{
+            border: 2px solid teal;
+            border-radius: 5px;
         }
         .user:hover, .tags:hover, .comments:hover, .description:hover{
             cursor: pointer;
@@ -548,6 +645,7 @@
         z-index: 2;
         overflow: hidden;
         overflow-x: scroll;
+        overflow-y: scroll;
         }
         .overlay {
         position: fixed;
@@ -608,4 +706,13 @@ button {
   display: none;
 }
         
-    </style>
+.user-heading{
+    opacity: 50%;
+    font-size: 12px;
+}
+
+.line-through{
+     text-decoration: line-through;
+}
+
+</style>

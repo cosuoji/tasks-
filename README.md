@@ -28,3 +28,7 @@ Requirements and Implementation Guide
  - when added to a task, send an email
  - change name in place 
  - routes to patch each feature
+ - figure out a creative way to mark as completed or mark as pending, in place 
+ - due in a day - orange 
+ - due that day - red 
+ - sort table by date 
