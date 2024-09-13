@@ -248,7 +248,9 @@
 
               for (let key of data) {
                 let th = document.createElement("th");
-                 if (key === "name") key = "Task"
+                 if (key === "name") {
+                    key = "Task"
+                 }
                  if(key === "userAssigned") key = "Users Assigned"
                 if (key === "priority") key = "Priority"
                 if (key === "endDate") key = "Deadline"
@@ -274,13 +276,15 @@
                         let cell = row.insertCell();
                         cell.classList.add("px-6", "py-4")
                         if(key === "name"){
-                            let text = document.createTextNode("");
+                            let text = document.createTextNode(element[key]);
                             let i = document.createElement("p")
                             i.classList.add("name-for-ids")
                             i.dataset.ids = ''
                             i.appendChild(text)
+                            cell.classList.add("tasksCell")
                             cell.appendChild(i)
                         }
+                        
                         if(key === "userAssigned"){
                          let text = document.createTextNode(element[key].length);
                          let i = document.createElement("span")
@@ -305,6 +309,7 @@
                            const display = moment(toDisplay).format('MMMM Do YYYY, h:mm:ss a')
                           let text = document.createTextNode(display);
                           let p = document.createElement("p")
+                          p.classList.add("enddate")
                           p.innerHTML = display
                           cell.appendChild(p)
                         }
@@ -367,7 +372,7 @@
 
                         }
                         else{
-                            let text = document.createTextNode(element[key]);
+                            let text = document.createTextNode("");
                             
                             cell.appendChild(text);
                         }
@@ -384,19 +389,24 @@
         generateTable(table, arrayToEdit);
 
 
-
-    let names = document.getElementsByClassName("name-for-ids")
-
-    for(let i = 0; i < names.length; i++){
+    //add ids to the names, priority, status, deadline
+     let names = document.getElementsByClassName("name-for-ids")
+     let priorities = document.getElementsByClassName("priority")
+     let status = document.getElementsByClassName("status")
+     let taskCell = document.getElementsByClassName("tasksCell")
+     let endDates = document.getElementsByClassName("enddate")
+     for(let i = 0; i < names.length; i++){
         names[i].dataset.ids = placeholder[i]
+        priorities[i].dataset.ids = placeholder[i]
+        status[i].dataset.ids = placeholder[i]
+        endDates[i].dataset.ids = placeholder[i]
     
     }
 
+
+
     //display the users on click
     let listOfUsers = document.getElementsByClassName("user")
-        
-
-
     for(let i = 0; i < listOfUsers.length; i++){
         listOfUsers[i].addEventListener("click", e=>{
             let text = document.createTextNode("X")
@@ -555,6 +565,7 @@
     })
 
 
+
     </script>
 
 
@@ -576,7 +587,7 @@
             border: 2px solid teal;
             border-radius: 5px;
         }
-        .user:hover, .tags:hover, .comments:hover, .description:hover{
+        .user:hover, .enddate:hover, .tags:hover, .comments:hover, .description:hover, .status:hover, .priority:hover, .name-for-ids:hover{
             cursor: pointer;
         }
         .main-ish{
